@@ -584,50 +584,46 @@ Another example of using Windows-specific attributes to add a reference to WinMD
            target-dir="component\x86" arch="x86" versions=">=10.0" />
 ```
 
-## podspec ==ios==
-Identifies a cocoapods`Podfile` (usually part of the OS/platform) on which plugin depends. 
+## podspec (==iOS==)
+Identifies the CocoaPods `Podfile` that provides the dependencies in which the plugin depends on.
 
-Has no attributes. Has a body consisting of two tags `<config>` and `<pods>`.
+This element comains a `<config>` and a `<pods>` tag.
 
 ### config
-Identifies a source from which cocoapods retrieves specs.
+The `<config>` element identifies the source urls in which the CocoaPods specs are retrieved from.
 
-Has no attributes. Has a body consisting of a tag `<source>`.
+This element contains one or more `<source>` tags.
 
 #### source
-Has no content in the body.
-
 Attributes(type) | Description
 ---------------- | ------------
 url | *required* <br> The source url of pods spec.
 
 ### pods
-Identifies a cocoapods library.
+The `<pods>` element identifies CocoaPods libraries.
 
-Has `use-frameworks` and `inhibit-all-warnings` attributes.
-
-Has a body consisting of `<pod>` tag.
+This element contains a `<pod>` tag for each CocoaPods libraries.
 
 Attributes(type) | Description
 ---------------- | ------------
-use-frameworks(string) | If this value is `true`, `use_frameworks!` is declared in Podfile.
-inhibit-all-warnings(string) | If this value is `true`, `inhibit_all_warnings!` is declared in Podfile.
+use-frameworks(string) | Default: false <br/> If `true`, the `use_frameworks!` attribute is declared in the Podfile.
+inhibit-all-warnings(string) | Default: false <br/> If `true`, the `inhibit_all_warnings!` attribute is declared in the Podfile.
 
 #### pod
 
 Attributes(type) | Description
 ---------------- | ------------
-name | *required* <br> pod name  
-spec | pod spec
-git | pod optional syntax `git`
-branch | pod optional syntax `branch`
-tag | pod optional syntax `tag`
-commit | pod optional syntax `commit`
-configurations | pod optional syntax `configurations` 
-http | pod optional syntax `http`
-path | pod optional syntax `path`
+name | *Required*<br/> Pod name  
+spec | Pod spec
 swift-version | Specify swift version of the cocoapods library
-options | raw format. like `options=":git => 'https://github.com/Alamofire/Alamofire.git', :tag => '3.1.1'"`
+git | Pod `git` option.
+branch | Pod `branch` option.
+tag | Pod `tag` option.
+commit | Pod `commit` option.
+configurations | Pod `configurations` option.
+http | Pod `http` option.
+path | Pod `path` option.
+options | Pod options declared in raw format. If declared, the other Pod options are overwritten.<br/>Example: `options=":git => 'https://github.com/Alamofire/Alamofire.git', :tag => '3.1.1'"`
 
 Examples:
 
